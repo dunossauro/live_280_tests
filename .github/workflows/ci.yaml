@@ -62,7 +62,7 @@ jobs:
             ${{ matrix.platform || matrix.target }} \
             ${{ matrix.output-format }} \
             --test --no-input --log \
-	    ${{ matrix.briefcase-args }}
+            ${{ matrix.briefcase-args }}
 
       - name: Package App
         run: |
@@ -70,7 +70,7 @@ jobs:
             ${{ matrix.platform || matrix.target }} \
             ${{ matrix.output-format }} \
             --update --adhoc-sign --no-input --log \
-	    ${{ matrix.briefcase-args }}
+            ${{ matrix.briefcase-args }}
 
       - name: Upload App
         uses: actions/upload-artifact@v4
