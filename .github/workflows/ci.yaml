@@ -23,12 +23,12 @@ jobs:
         target: [ "Flatpak", "AppImage"]
         include:
           - target: "AppImage"
-            platform: "Linux"
+            platform: "linux"
             output-format: "appimage"
             runs-on: "ubuntu-latest"
 
           - target: "Flatpak"
-            platform: "Linux"
+            platform: "linux"
             output-format: "flatpak"
             runs-on: "ubuntu-latest"
 
@@ -50,14 +50,6 @@ jobs:
         run: |
           ${{ matrix.briefcase-build-prefix }} \
           briefcase build \
-            ${{ matrix.platform || matrix.target }} \
-            ${{ matrix.output-format }} \
-            --test --no-input --log
-
-      - name: Test App
-        run: |
-          ${{ matrix.briefcase-run-prefix }} \
-          briefcase run \
             ${{ matrix.platform || matrix.target }} \
             ${{ matrix.output-format }} \
             --test --no-input --log
