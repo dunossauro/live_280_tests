@@ -42,7 +42,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install flatpak
-        run: apt install flatpak flatpak-builder
+        run: sudo apt install flatpak flatpak-builder
 
       - name: Install Briefcase
         run: |
