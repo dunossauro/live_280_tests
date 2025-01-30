@@ -1,6 +1,8 @@
 name: CI
 on:
-  push
+  push:
+    tags:
+      - '*'
 
 concurrency:
   group: ${{ github.workflow}}-${{ github.ref }}
@@ -113,3 +115,10 @@ jobs:
         with:
           name: Log-Failure-${{ matrix.target }}
           path: logs/*
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            dist/*
