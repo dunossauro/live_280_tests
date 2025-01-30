@@ -34,7 +34,7 @@ jobs:
 
           - target: "Archlinux"
             platform: "linux"
-            output-format: "archlinux"
+            output-format: "system"
             runs-on: "ubuntu-latest"
             briefcase-args: "--target archlinux"
 
