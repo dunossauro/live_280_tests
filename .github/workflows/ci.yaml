@@ -1,9 +1,6 @@
 name: CI
 on:
-  pull_request:
-  push:
-    branches:
-      - main  # update to match the default branch for your repo
+  push
 
 # Cancel active CI runs for a PR before starting another run
 concurrency:
