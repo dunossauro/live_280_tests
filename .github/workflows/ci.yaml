@@ -36,7 +36,7 @@ jobs:
             platform: "linux"
             output-format: "archlinux"
             runs-on: "ubuntu-latest"
-	    briefcase-args: "--target archlinux"
+            briefcase-args: "--target archlinux"
 
     steps:
       - name: Checkout
