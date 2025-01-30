@@ -1,18 +1,30 @@
+[project]
+name = "exemplo"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Your Name",email = "you@example.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "cyclopts (>=3.4.0,<4.0.0)"
+]
+
+
 [tool.briefcase]
-project_name = "exemplo"
+project_name = "Exemplo"
 bundle = "com.example"
 version = "0.0.1"
 url = "https://example.com/exemplo"
 license.file = "LICENSE"
-author = "Jane Developer"
-author_email = "jane@example.com"
+author = "Your Name"
+author_email = "you@example.com"
 
 [tool.briefcase.app.exemplo]
-formal_name = "exemplo"
-description = "Meu primeiro exemplo"
+formal_name = "Exemplo"
+description = ""
 long_description = """More details about the app should go here."""
 sources = ["exemplo"]
 test_sources = ["tests"]
-console_app = true
-requires = ['cyclopts']
-test_requires = ["pytest"]
+
