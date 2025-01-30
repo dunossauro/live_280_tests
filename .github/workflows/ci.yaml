@@ -1,6 +1,8 @@
 name: CI
 on:
-  tag
+  push:
+    tags:        
+      - '*'
 
 # Cancel active CI runs for a PR before starting another run
 concurrency:
