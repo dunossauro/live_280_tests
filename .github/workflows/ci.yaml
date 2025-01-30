@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [ "Flatpak", "AppImage", "Archlinux" ]
+        target: [ "Flatpak", "AppImage", "Archlinux", "Ubuntu", "Fedora", "Opensuse", "Windows", "MacOs" ]
         include:
           - target: "AppImage"
             platform: "linux"
@@ -37,6 +37,34 @@ jobs:
             output-format: "system"
             runs-on: "ubuntu-latest"
             briefcase-args: "--target archlinux"
+
+          - target: "Ubuntu"
+            platform: "linux"
+            output-format: "system"
+            runs-on: "ubuntu-latest"
+            briefcase-args: "--target ubuntu:24.04"
+
+          - target: "Fedora"
+            platform: "linux"
+            output-format: "system"
+            runs-on: "ubuntu-latest"
+            briefcase-args: "--target fedora:40"
+
+          - target: "Opensuse"
+            platform: "linux"
+            output-format: "system"
+            runs-on: "ubuntu-latest"
+            briefcase-args: "--target opensuse/tumbleweed"
+
+          - target: "Windows"
+            platform: "windows"
+            output-format: "app"
+            runs-on: "windows-latest"
+
+          - target: "MacOs"
+            platform: "macos"
+            output-format: "app"
+            runs-on: "macos-latest"
 
     steps:
       - name: Checkout
