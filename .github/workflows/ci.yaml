@@ -39,7 +39,10 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.12"  # update with your targeted Python version
+          python-version: "3.12"
+
+      - name: Install flatpak
+        run: apt install flatpak flatpak-builder
 
       - name: Install Briefcase
         run: |
@@ -48,7 +51,6 @@ jobs:
 
       - name: Build App
         run: |
-          ${{ matrix.briefcase-build-prefix }} \
           briefcase build \
             ${{ matrix.platform || matrix.target }} \
             ${{ matrix.output-format }} \
@@ -56,7 +58,6 @@ jobs:
 
       - name: Package App
         run: |
-          ${{ matrix.briefcase-package-prefix }} \
           briefcase package \
             ${{ matrix.platform || matrix.target }} \
             ${{ matrix.output-format }} \
@@ -65,7 +66,7 @@ jobs:
       - name: Upload App
         uses: actions/upload-artifact@v4
         with:
-          name: App-${{ matrix.target }}
+          name: exemplo-${{ matrix.target }}
           path: dist
           if-no-files-found: error
 
