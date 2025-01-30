@@ -1,10 +1,7 @@
 name: CI
 on:
-  push:
-    tags:
-      - '*'
+  push
 
-# Cancel active CI runs for a PR before starting another run
 concurrency:
   group: ${{ github.workflow}}-${{ github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
@@ -23,31 +20,17 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [ "Windows", "macOS", "Ubuntu-24.04", "Fedora-40"]
+        target: [ "Flatpak", "AppImage"]
         include:
-          - target: "Windows"
-            output-format: "app"
-            runs-on: "windows-latest"
-
-          - target: "macOS"
-            output-format: "app"
-            runs-on: "macos-latest"
-
-          - target: "Ubuntu-24.04"
+          - target: "AppImage"
             platform: "Linux"
-            output-format: "system"
+            output-format: "appimage"
             runs-on: "ubuntu-latest"
-            pre-command: "sudo apt -y install socat"
-            briefcase-run-prefix: "xvfb-run"
-            briefcase-args: "--target ubuntu:24.04"
 
-          - target: "Fedora-40"
+          - target: "Flatpak"
             platform: "Linux"
-            output-format: "system"
+            output-format: "flatpak"
             runs-on: "ubuntu-latest"
-            pre-command: "sudo apt -y install socat"
-            briefcase-run-prefix: "xvfb-run"
-            briefcase-args: "--target fedora:40"
 
     steps:
       - name: Checkout
@@ -69,9 +52,7 @@ jobs:
           briefcase build \
             ${{ matrix.platform || matrix.target }} \
             ${{ matrix.output-format }} \
-            --test --no-input --log \
-            ${{ matrix.briefcase-args }} \
-            ${{ matrix.briefcase-build-args }}
+            --test --no-input --log
 
       - name: Test App
         run: |
@@ -79,9 +60,7 @@ jobs:
           briefcase run \
             ${{ matrix.platform || matrix.target }} \
             ${{ matrix.output-format }} \
-            --test --no-input --log \
-            ${{ matrix.briefcase-args }} \
-            ${{ matrix.briefcase-run-args }}
+            --test --no-input --log
 
       - name: Package App
         run: |
@@ -89,9 +68,7 @@ jobs:
           briefcase package \
             ${{ matrix.platform || matrix.target }} \
             ${{ matrix.output-format }} \
-            --update --adhoc-sign --no-input --log \
-            ${{ matrix.briefcase-args }} \
-            ${{ matrix.briefcase-package-args }}
+            --update --adhoc-sign --no-input --log
 
       - name: Upload App
         uses: actions/upload-artifact@v4
@@ -99,16 +76,6 @@ jobs:
           name: App-${{ matrix.target }}
           path: dist
           if-no-files-found: error
-
-      - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@v2
-        with:
-          file: dist/App-${{ matrix.target }}
-          asset_name: mything
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.ref }}
-          overwrite: true
-          body: "This is my release text"
 
       - name: Upload Log
         if: failure()

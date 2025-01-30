@@ -27,48 +27,30 @@ test_requires = [
 
 [tool.briefcase.app.exemplo.macOS]
 universal_build = true
-requires = [
-]
+requires = []
 
 [tool.briefcase.app.exemplo.linux]
-requires = [
-]
+requires = []
 
 [tool.briefcase.app.exemplo.linux.system.debian]
-system_requires = [
-    # Add any system packages needed at build the app here
-]
+system_requires = []
 
-system_runtime_requires = [
-    # Add any system packages needed at runtime here
-]
+system_runtime_requires = []
 
 [tool.briefcase.app.exemplo.linux.system.rhel]
-system_requires = [
-    # Add any system packages needed at build the app here
-]
+system_requires = []
 
-system_runtime_requires = [
-    # Add any system packages needed at runtime here
-]
+system_runtime_requires = []
 
 [tool.briefcase.app.exemplo.linux.system.suse]
-system_requires = [
-    # Add any system packages needed at build the app here
-]
+system_requires = []
 
-system_runtime_requires = [
-    # Add any system packages needed at runtime here
-]
+system_runtime_requires = []
 
 [tool.briefcase.app.exemplo.linux.system.arch]
-system_requires = [
-    # Add any system packages needed at build the app here
-]
+system_requires = []
 
-system_runtime_requires = [
-    # Add any system packages needed at runtime here
-]
+system_runtime_requires = []
 
 [tool.briefcase.app.exemplo.linux.flatpak]
 flatpak_runtime = "org.freedesktop.Platform"
@@ -76,17 +58,15 @@ flatpak_runtime_version = "24.08"
 flatpak_sdk = "org.freedesktop.Sdk"
 
 [tool.briefcase.app.exemplo.windows]
-requires = [
-]
+requires = []
 
-# Mobile deployments
+
 [tool.briefcase.app.exemplo.iOS]
 supported = false
 
 [tool.briefcase.app.exemplo.android]
 supported = false
 
-# Web deployments
 [tool.briefcase.app.exemplo.web]
 supported = false
 
