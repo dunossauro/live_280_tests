@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [ "Flatpak", "AppImage"]
+        target: [ "Flatpak", "AppImage", "Archlinux" ]
         include:
           - target: "AppImage"
             platform: "linux"
@@ -32,6 +32,12 @@ jobs:
             output-format: "flatpak"
             runs-on: "ubuntu-latest"
 
+          - target: "Archlinux"
+            platform: "linux"
+            output-format: "archlinux"
+            runs-on: "ubuntu-latest"
+	    briefcase-args: "--target archlinux"
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -42,6 +48,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install flatpak
+        if: matrix.target == 'Flatpak'
         run: sudo apt install flatpak flatpak-builder
 
       - name: Install Briefcase
@@ -54,14 +61,16 @@ jobs:
           briefcase build \
             ${{ matrix.platform || matrix.target }} \
             ${{ matrix.output-format }} \
-            --test --no-input --log
+            --test --no-input --log \
+	    ${{ matrix.briefcase-args }}
 
       - name: Package App
         run: |
           briefcase package \
             ${{ matrix.platform || matrix.target }} \
             ${{ matrix.output-format }} \
-            --update --adhoc-sign --no-input --log
+            --update --adhoc-sign --no-input --log \
+	    ${{ matrix.briefcase-args }}
 
       - name: Upload App
         uses: actions/upload-artifact@v4
