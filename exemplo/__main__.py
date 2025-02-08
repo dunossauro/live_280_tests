@@ -1,4 +1,11 @@
-from exemplo.app import main
+from cyclopts import App
 
-if __name__ == "__main__":
-    main()
+app = App()
+
+
+@app.default
+def default(nome):
+    print(f'Olá {nome}')
+
+
+app()

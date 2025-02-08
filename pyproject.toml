@@ -10,6 +10,7 @@ requires-python = ">=3.13"
 dependencies = [
     "cyclopts (>=3.4.0,<4.0.0)"
 ]
+license = {file = "LICENSE", text = 'BSD'}
 
 
 [tool.briefcase]
