@@ -28,3 +28,6 @@ flatpak_runtime = "org.gnome.Platform"
 flatpak_runtime_version = "47"
 flatpak_sdk = "org.gnome.Sdk"
 
+[tool.poetry.group.dev.dependencies]
+briefcase = "^0.3.22"
+
