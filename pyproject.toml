@@ -1,6 +1,6 @@
 [project]
 name = "exemplo"
-version = "0.12.0"
+version = "0.13.0"
 description = ""
 authors = [
     {name = "Your Name",email = "you@example.com"}
@@ -17,6 +17,7 @@ project_name = "Exemplo"
 bundle = "com.example"
 
 [tool.briefcase.app.exemplo]
+description = "Descrição curta..."
 long_description = "Descrição longa..."
 sources = ["exemplo"]
 test_sources = ["tests"]
